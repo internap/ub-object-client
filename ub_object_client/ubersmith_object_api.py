@@ -1,4 +1,4 @@
-from ub_object_client.client import Client
+from ub_object_client.ub_object_client import Client
 
 
 def init(backend):
