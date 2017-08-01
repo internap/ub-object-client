@@ -9,7 +9,7 @@ class Client:
         return int(self.clientid)
 
     def __init__(self, clientid=None):
-        self.clientid = clientid
+        self._clientid = clientid
         # self.referred_by = None
         # self.ss = None
         # self.city = None
