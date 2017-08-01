@@ -7,10 +7,8 @@ class ClientApi(object):
 
     def list(self):
         client_list = self.api.client.list()
-        result = []
-        for client_id, client_dict in client_list.items():
-            result.append(_patch_matching_attributes(Client(), client_dict))
-        return result
+
+        return [Client(data) for data in client_list.values()]
 
 
 def _patch_matching_attributes(client, attributes):
