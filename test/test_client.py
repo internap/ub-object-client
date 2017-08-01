@@ -5,7 +5,7 @@ from ub_object_client import UbObjectClient
 
 def test_client_list(api):
     api, rest_client = api
-    rest_client.should_receive('list').and_return({
+    rest_client.client.should_receive('list').and_return({
         "1001": {
             "city": "Troy",
         }
@@ -14,3 +14,10 @@ def test_client_list(api):
     returned_object = api.client.list()
 
     assert "Troy" == returned_object[0].city
+
+
+def test_client_list_no_client(api):
+    api, rest_client = api
+    rest_client.client.should_receive('list').and_return({})
+
+    assert api.client.list() == {}
