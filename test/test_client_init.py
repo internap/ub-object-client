@@ -26,8 +26,6 @@ def test_backend_initialization():
         .and_return(rest_client)
 
     UbObjectClient(url='http://ubersmith.example', user='username', password='password')
-
-
     # rest_client.client.should_receive('list').with_args().and_return([])
     # api = UbObjectClient(url='http://ubersmith.com/api/2.0/', user='username', password='password')
     # api.client.list()

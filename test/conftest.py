@@ -10,6 +10,7 @@ def api(ub):
     flexmock(ubersmith_client.api).should_receive('init').and_return(ub)
     return UbObjectClient(url='', user='', password='')
 
+
 @pytest.fixture
 def ub():
     return flexmock(
