@@ -1,4 +1,4 @@
-import flexmock
+from flexmock import flexmock
 import ubersmith_client
 from ub_object_client import UbObjectClient
 
