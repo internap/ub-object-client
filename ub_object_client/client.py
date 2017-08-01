@@ -1,9 +1,18 @@
-class Client(object):
-    def __init__(self):
-        self.clientid = None
+class Client:
+    # _attrs = [
+    #     ('clientid', int)
+    #
+    # ]
+
+    @property
+    def clientid(self):
+        return int(self.clientid)
+
+    def __init__(self, clientid=None):
+        self.clientid = clientid
         # self.referred_by = None
         # self.ss = None
-        self.city = None
+        # self.city = None
         # self.address = None
         # self.company = None
         # self.qblistid = None
