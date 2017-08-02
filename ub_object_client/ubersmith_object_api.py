@@ -1,4 +1,5 @@
 from ub_object_client.client import Client
+from ub_object_client.conversion import ApiConverter
 
 
 class ClientApi(object):
@@ -8,11 +9,4 @@ class ClientApi(object):
     def list(self):
         client_list = self.api.client.list()
 
-        return [Client(data) for data in client_list.values()]
-
-
-def _patch_matching_attributes(client, attributes):
-    for k, v in attributes.items():
-        if hasattr(client, k):
-            setattr(client, k, v)
-    return client
+        return [Client(converter=ApiConverter(), **data) for data in client_list.values()]
