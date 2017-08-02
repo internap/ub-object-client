@@ -1,69 +1,74 @@
-class Client(object):
-    def __init__(self):
-        self.clientid = None
-        # self.referred_by = None
-        # self.ss = None
-        self.city = None
-        # self.address = None
-        # self.company = None
-        # self.qblistid = None
-        # self.discount = None
-        # self.tier_commission_rate = None
-        # self.zip = None
-        # self.prefer_lang = None
-        # self.commission = None
-        # self.cpass = None
-        # self.chost = None
-        # self.country = None
-        # self.comments = None
-        # self.salesperson = None
-        # self.sales = None
-        # self.discount_type = None
-        # self.grace_due = None
-        # self.prebill_method = None
-        # self.prebill_days = None
-        # self.metadata = None
-        # self.tier_sales = None
-        # self.commission_rate = None
-        # self.class_id = None
-        # self.priority = None
-        # self.datesend = None
-        # self.last = None
-        # self.late_fee_scheme_id = None
-        # self.default_renew = None
-        # self.password_changed = None
-        # self.latest_inv = None
-        # self.charge_days = None
-        # self.permnote = None
-        # self.datepay = None
-        # self.name_convention = None
-        # self.acctmgr = None
-        # self.default_billing_info = None
-        # self.password_timeout = None
-        # self.full_name = None
-        # self.listed_company = None
-        # self.commission_type = None
-        # self.credit_bool = None
-        # self.crv = None
-        # self.fax = None
-        # self.phone = None
-        # self.first = None
-        # self.qbeditseq = None
-        # self.datedue = None
-        # self.tier_commission_type = None
-        # self.referred = None
-        # self.retry_every = None
-        # self.access = None
-        # self.clogin = None
-        # self.tempnote = None
-        # self.clientid = None
-        # self.login_enabled = None
-        # self.login = None
-        # self.password = None
-        # self.created = None
-        # self.tier_commission = None
-        # self.active = None
-        # self.balance = None
-        # self.email = None
-        # self.state = None
-        # self.checkname = None
+from datetime import datetime
+
+
+def to_money(str):
+    return float(str)
+
+
+def to_datetime(timestamp_str):
+    return datetime.utcfromtimestamp(float(timestamp_str))
+
+
+def int_or_none(str):
+    if not str:
+        return None
+    return int(str)
+
+
+class Client:
+    def __init__(self, data):
+        self._data = data
+
+        self.clientid = int(data['clientid'])
+        self.first = str(data['first'])
+        self.balance = to_money(data['balance'])
+        self.created = to_datetime(data['created'])
+        self.prebill_days = int(data['prebill_days'])
+        self.acct_balance = to_money(data['acct_balance'])
+        self.acctmgr = int(data['acctmgr'])
+        self.active = int(data['active'])
+        self.address = str(data['address'])
+        self.auto_apply_credit = bool(data['auto_apply_credit'])
+        self.business = int(data['business'])
+        self.charge_days = int(data['charge_days'])
+        self.checkname = str(data['checkname'])
+        self.city = str(data['city'])
+        self.class_id = int(data['class_id'])
+        self.comments = str(data['comments'])
+        self.commission = to_money(data['commission'])
+        self.commission_rate = to_money(data['commission_rate'])
+        self.commission_type = int(data['commission_type'])
+        self.company = str(data['company'])
+        self.country = str(data['country'])
+        self.credit_balance = to_money(data['credit_balance'])
+        self.credit_bool = bool(data['credit_bool'])
+        self.crv = int(data['crv'])
+        self.datedue = bool(data['datedue'])
+        self.discount = to_money(data['discount'])
+        self.discount_type = int(data['discount_type'])
+        self.email = str(data['email'])
+        self.fax = str(data['fax'])
+        self.full_name = str(data['full_name'])
+        self.grace_due = int(data['grace_due'])
+        self.inv_balance = to_money(data['inv_balance'])
+        self.invoice_delivery = bool(data['invoice_delivery'])
+        self.last = str(data['last'])
+        self.late_fee_scheme_id = int(data['late_fee_scheme_id'])
+        self.latest_inv = to_datetime(data['latest_inv'])
+        self.listed_company = str(data['listed_company'])
+        self.login = str(data['login'])
+        self.managed = str(data['managed'])
+        self.password_timeout = int(data['password_timeout'])
+        self.password_changed = to_datetime(data['password_changed'])
+        self.phone = to_datetime(data['phone'])
+        self.prebill_method = int(data['prebill_method'])
+        self.prefer_lang = int(data['prefer_lang'])
+        self.priority = int(data['priority'])
+        self.prorate_min_days = int(data['prorate_min_days'])
+        self.qblistid = int_or_none(data['qblistid'])
+        self.retry_every = int(data['retry_every'])
+        self.state = str(data['state'])
+        self.tier_commission = to_money(data['tier_commission'])
+        self.tier_commission_rate = to_money(data['tier_commission_rate'])
+        self.tier_commission_type = int(data['tier_commission_type'])
+        self.zip = str(data['zip'])
