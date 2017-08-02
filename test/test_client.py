@@ -1,4 +1,5 @@
 # import datetime
+import datetime
 
 from ub_object_client.client import AutomagicClient
 
@@ -10,22 +11,20 @@ def test_client_list_no_client(api, ub):
 
 
 def test_automagic():
-    client = AutomagicClient(dict(clientid='9', first='abc'))
+    client = AutomagicClient(dict(clientid='9', first='abc', address='abc', created='1399127048'))
+
     assert client.id == 9
     assert type(client.id) == int
 
     assert client.first_name == 'abc'
     assert type(client.first_name) == str
 
-
-def test_automagic_legacy_aliases():
-    client = AutomagicClient(dict(clientid='9', first='abc'))
-
+    # legacy
     assert client.clientid == 9
-    assert type(client.clientid) == int
-
     assert client.first == 'abc'
-    assert type(client.first) == str
+
+    # datetime
+    assert client.created == datetime.datetime(2014, 5, 3, 10, 24, 8)
 
 
 def test_client_with_some_fields(ub, api):
