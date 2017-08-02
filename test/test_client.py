@@ -11,6 +11,16 @@ def test_client_list_no_client(api, ub):
 
 def test_automagic():
     client = AutomagicClient(dict(clientid='9', first='abc'))
+    assert client.id == 9
+    assert type(client.id) == int
+
+    assert client.first_name == 'abc'
+    assert type(client.first_name) == str
+
+
+def test_automagic_legacy_aliases():
+    client = AutomagicClient(dict(clientid='9', first='abc'))
+
     assert client.clientid == 9
     assert type(client.clientid) == int
 

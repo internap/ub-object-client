@@ -1,3 +1,6 @@
+from ub_object_client._automagic import Property, LegacyProperty, AutomagicMixin
+
+
 class StaticClient:
     def __init__(self, data):
         self._data = data
@@ -11,20 +14,15 @@ class StaticClient:
         return self._data["first"]
 
 
-class AutomagicClient:
+class AutomagicClient(AutomagicMixin):
     def __init__(self, data):
-        self._data = data
+        self.id = Property(int, 'clientid')
+        self.first_name = Property(str, 'first')
 
-    clientid = (int, 'clientid')
-    first = (str, 'first')
+        self.first = LegacyProperty(use_instead=self.first_name)
+        self.clientid = LegacyProperty(use_instead=self.id)
 
-    # id = alias(clientid)
-    # test = (lambda test: int(test), 'test')
-
-    def __getattribute__(self, attribute_name):
-        _type = super(AutomagicClient, self).__getattribute__(attribute_name)[0]
-        attribute_value = object.__getattribute__(self, '_data')[attribute_name]
-        return _type(attribute_value)
+        super(AutomagicClient, self).__init__(data)
 
 
 class Client(StaticClient):
